@@ -9,7 +9,7 @@ $ composer requre pawel/logcleanup
 ```
 
 And inside .php file just add lines:
-```
+```php
 <?php
 
 use LogCleanup\LogCleanupContext;
