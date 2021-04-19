@@ -14,4 +14,12 @@ final class FileLogCleanupTest extends TestCase
 
         $this->assertStringNotContainsString(file_get_contents('var/logs/app.log'), '2021-02-27');
     }
+
+    public function testFileDoesntExists()
+    {
+        $logCleanupContext = new LogCleanupContext(new FileLogCleanupStrategy());
+
+        $this->expectException(Exception::class);
+        $logCleanupContext->setConfiguration(['file' => 'var/logs/debug.log']);
+    }
 }

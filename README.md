@@ -5,7 +5,7 @@ Simple application designed for cleaning old logs.
 At the first please install composer dependency:
 
 ```
-$ composer requre pawel/logcleanup
+$ composer require pawel/logcleanup
 ```
 
 And inside .php file just add lines:

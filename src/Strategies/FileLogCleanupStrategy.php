@@ -11,7 +11,6 @@ class FileLogCleanupStrategy implements LogCleanup
 
     public function clearLogs(DateTime $timeperoid): void
     {
-        $file = fopen($this->getFile(), "r+");
         $output = "";
 
         foreach(file($this->getFile()) as $line) {
@@ -37,6 +36,10 @@ class FileLogCleanupStrategy implements LogCleanup
         } else {
             throw new Exception("File configuration cannot be empty");
         }
+
+        if(!file_exists($this->file)) {
+            throw new Exception("File $this->file not found");
+        }
     }
 
     private function getFile(): string
@@ -47,7 +50,6 @@ class FileLogCleanupStrategy implements LogCleanup
     private function getMatchedDate(string $stringToMatch): string 
     {
         if(preg_match('/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/', $stringToMatch, $matches)) {
-            var_dump($matches[0]);
             return $matches[0];
         }
 
